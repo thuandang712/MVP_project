@@ -8,12 +8,30 @@ const db = require('./db/db_configuration');
 // port
 const PORT = process.env.PORT || 4000;
 
+// body parser
 app.use(express.json())
 
 // link to FE
 app.use(express.static(path.join(__dirname, 'public')));
 
 // handle routes
+// POST a task 
+app.post('/api/task', async(req, res, next) => {
+    try {
+        const {task_name} = req.body
+        // data validation
+        if (typeof task_name !== 'string') {
+            res.status(404).send('Bad request')
+        } else {
+            let {rows} = await db.query('INSERT INTO task (task_name) VALUES ($1) RETURNING *', [task_name])
+            res.status(201).json(rows)
+        }
+    } catch (error) {
+        console.log('Internal Server Error')
+        res.status(500).json(error)
+    }
+})
+
 // GET all tasks 
 app.get('/api/task', async(req, res, next) => {
     try {
@@ -25,10 +43,60 @@ app.get('/api/task', async(req, res, next) => {
     }
 })
 
+// GET a single task based on its ID
+app.get('/api/task/:id', async(req, res, next) => {
+    try {
+        const {id} = req.params;
+        let {rows} = await db.query('SELECT * FROM task WHERE task_id = $1', [id])
+        res.status(200).json(rows)
+    } catch (error) {
+        console.log('Internal Server Error')
+        res.status(500).json(error)
+    }
+})
 
+// UPDATE a task based on its ID
+app.patch('/api/task/:id', async(req, res, next) => {
+    try {
+        const {id} = req.params;
+        const {task_name} = req.body;
+        // data validation
+        if (typeof task_name !== 'string') {
+            res.status(400).send("Bad Request")
+        } else {
+            let {rows} = await db.query('UPDATE task SET task_name = $1 WHERE task_id = $2 RETURNING *', [task_name, id])
+            res.status(200).json(rows)
+        }
+    } catch (error) {
+        console.log('Internal Server Error')
+        res.status(500).json(error)
+    }
+})
 
+// DELETE a task based on its ID
+app.delete('/api/task/:id', async(req, res, next) => {
+    try {
+        const {id} = req.params;
+        let {rows} = await db.query('DELETE FROM task WHERE task_id = $1 RETURNING *', [id])
+        res.status(200).json(rows)
+    } catch (error) {
+        console.log('Internal Server Error')
+        res.status(500).json(error)
+    }
+})
 
-// unknown http reqs
+// DELETE all tasks
+app.delete('/api/task/', async(req, res, next) => {
+    try {
+        let {rows} = await db.query('TRUNCATE TABLE task')
+        res.status(200).json(rows)
+    } catch (error) {
+        console.log('Internal Server Error')
+        res.status(500).json(error)
+    }
+})
+
+// handle unknown http reqs
 app.use( (req, res, next) => {
     res.status(404).end("Not Found")
 })
