@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  .menu-container {
+}
+
+.menu-container {
     color: #fff;
     background-color: #5995DA;  /* Blue */
     padding: 20px 0;
@@ -13,81 +15,70 @@
   }
   
   .menu {
-    border: 1px solid #fff;  /* For debugging */
+    /* border: 1px solid #fff;  For debugging */
     width: 900px;
     display: flex;
     justify-content: space-between;
-  }
-
-  .links {
-    /* border: 1px solid red;  For debugging */
-    display: flex;
-    justify-content: flex-end;
+    font-family: 'STIX Two Text', serif;
   }
   
   .login {
     margin-left: 20px;
   }
 
-  .header-container {
-    /* border: 1px solid red;  For debugging */
+  .signup {
+    margin-left: auto;
+}
+
+.header-container {
     color: #5995DA;
     background-color: #D6E9FE;
     display: flex;
     justify-content: center;
   }
   
-  .header {
-    width: 900px;
-    height: 300px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;  /* Add this */
-  }
+  /* .header {
+    border: 1px solid red; 
+  } */
 
-    .social,
-    .logo,
-    .subscribe {
-    border: 1px solid #5995DA;
-    }
-
-    .social,
-    .subscribe {
-    align-self: flex-end;
-    margin-bottom: 20px;
-    }
+  .title {
+    font-family: 'STIX Two Text', serif;
+    font-size: 5em;
+    color: black;
+    padding: .3em;
+}
 
 
-.photo-grid-container {
+.task-container {
     display: flex;
     justify-content: center;
+    border: 1px solid red;
   }
   
-  .photo-grid {
-    width: 900px;
+  .task-grid {
+    border: 1px solid black;
+    width: 80%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
   }
   
-  .photo-grid-item {
-    border: 1px solid red;
-    width: 300px;
-    height: 300px;
-}
+    ul {
+        list-style: none;
+    }
 
-.first-item {
-    order: 1;
-  }
-  
-  .last-item {
-    order: -1;
-  }
+    .list-item {
+        border: 1px solid blue;
+        font-family: 'STIX Two Text', serif;
+        font-size: 2em;
+        padding: .3em;
+        margin: .3em;
+    }
 
 
-  .footer {
+  /* .footer {
     display: flex;
     justify-content: space-between;
   }
@@ -107,8 +98,5 @@
     background-color: #5995DA;
     flex: initial;
     width: 300px;
-    }
+    } */
 
-    .signup {
-        margin-left: auto;
-      }
