@@ -72,41 +72,59 @@
     background: pink;
     color: white;
     cursor: pointer;
-    width: 5%;
+    width: 7%;
   }
+
   #add-task-btn:hover {
     background-color: rgb(248, 126, 147);
   }
 
 
 .task-container {
+    border: 1px solid red;
     padding: 20px 0;
-    display: flex;
-    justify-content: center;
   }
-  
+
+  ul {
+    list-style: none;
+  }
+
   .task-list {
     border: 1px solid black;
-    /* width: 80%; */
+    width: 50%;
+    margin: auto;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px;
   }
   
-    ul {
-        list-style: none;
-    }
+  .tasks {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
 
-    .list-item {
-        border: 1px solid blue;
-        font-family: 'STIX Two Text', serif; 
-        font-size: 2em;
-        padding: .3em;
-        margin: .3em;
-    }
-    
+  .list-item {
+    border: 1px solid black;
+    /* border-bottom: .5px solid black; */
+    font-family: 'STIX Two Text', serif; 
+    font-size: 1.5em;
+    padding: .2em 0;
+    margin: 0 .2em;
+  }
+
+  .remove-btn {
+    cursor: pointer;
+    border: 1px solid blue;
+    margin-left: auto;
+    font-family: 'STIX Two Text', serif; 
+    font-size: 1.5em;
+  }
+
 
   /* .footer {
     display: flex;
