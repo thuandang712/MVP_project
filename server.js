@@ -4,14 +4,14 @@ const express = require('express');
 const app = express();
 const path = require('path')
 const db = require('./db/db_configuration');
+const cors = require('cors')
 
 // port
 const PORT = process.env.PORT || 4000;
 
-// body parser
-app.use(express.json())
-
-// link to FE
+// middle wares
+app.use(express.json());
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // handle routes

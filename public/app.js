@@ -9,6 +9,44 @@ function init() {
     addEventListenerToAddTaskBtn();
 }
 
+//------------------ DATABASE CRUD ------------------//
+// GET tasks list item from database
+async function getTaskItem() {
+    const result = await fetch('/api/task')
+    const data = await result.json()
+    for (let i of data) {
+        createAndAppendDivTask(i.task_id, i.task_name)
+    }
+}
+
+// POST task to Database
+async function postTaskItem(url = '', data = {}) {
+    const response = await fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    return response.json()
+}
+
+// DELETE task from database
+async function deleteTaskItem(url = '') {
+    const response = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    return response.json()
+}
+//------------------ DATABASE CRUD ------------------//
+
+
+
+//------------------ MAIN FUNCTIONS ------------------//
 // create and append result
 function createAndAppendDivTask(taskId, taskName) {
     // create task Divs
@@ -24,64 +62,47 @@ function createAndAppendDivTask(taskId, taskName) {
     ulArea.append(taskDiv)
 }
 
-// get tasks list item
-async function getTaskItem() {
-    const result = await fetch('http://localhost:4000/api/task')
-    const data = await result.json()
-    for (let i of data) {
-        createAndAppendDivTask(i.task_id, i.task_name)
-    }
+// event listener on add task btn
+function addEventListenerToAddTaskBtn() {
+    $('#add-task-btn').on('click', () => {
+        const textInput = $('#task-name').val()
+        // check if user input is nothing
+        if (textInput.length === 0) {
+            // alert('Please enter....') ////////////////// needs fix
+            $('.error').text('Oops!! Please enter item')
+        } else {
+            let lastTaskId = ulArea.children().last().attr('id')
+            // handle case if there is nothing in the DB yet
+            if (lastTaskId === undefined) {
+                lastTaskId = 1;
+                createAndAppendDivTask(lastTaskId, textInput)
+                $('.error').hide()
+                postTaskItem('/api/task', {task_name: textInput})
+            } else {
+                lastTaskId++;
+                createAndAppendDivTask(lastTaskId, textInput)
+                $('.error').hide()
+                postTaskItem('/api/task', {task_name: textInput})
+            }
+        }
+    })
 }
 
 // event listener on remove btn
 function addEventListenerToXBtn() {
     ulArea.on('click', (e) => {
         const isXBtn = e.target.getAttribute('class') === 'remove-btn'
-        const divId = e.target.getAttribute('id')
+        let divId = e.target.getAttribute('id')
         if (isXBtn) {
-            const btnId = e.target.getAttribute('id') 
-            if (btnId === divId) {
-                $(`#${divId}`).hide()
-            }   
+            const btnId = e.target.getAttribute('id')
+            // ??????? handle case task_id is always being incremented in the DB ??????
+            divId = btnId;
+            $(`#${divId}`).hide()
+            // delete item
+            deleteTaskItem(`/api/task/${divId}`)
         }
-        
-        // also delete data in database?
     })
 }
-
-
-// event listener on add task btn
-function addEventListenerToAddTaskBtn() {
-    $('#add-task-btn').on('click', () => {
-        const textInput = $('#task-name').val()
-        
-        // add to Database?
-
-        ////////////
-
-        let lastTaskId = ulArea.children().last().attr('id')
-        lastTaskId++;
-        createAndAppendDivTask(lastTaskId, textInput)
-    })
-}
-
-
-// add event listen to check box to strike thru text --> handled by css
-// function addEventListenerToBox() {
-//     ulArea.on('click', (e) => {
-//         const isCheckBox = e.target.getAttribute('type') === 'checkbox'
-//         if (isCheckBox) {
-//             const boxId = e.target.getAttribute('id') 
-//             console.log(boxId)
-//             if ( $(`#${boxId}`).prop("checked")) {
-//                 console.log("Checkbox is checked.");
-//             } else  {
-//                 console.log("checkbox is NOT checked")
-//             }
-//         }
-//     })
-// }
-
 
 // date manipulation
 function getDate() { 
@@ -93,5 +114,6 @@ function getDate() {
     const formatted_date = `${month} ${date}, ${year}`
     // show formatted date
     $('.date').text(formatted_date)
-    $('.title-name').text(`Happy ${weekDay}`)
+    $('.title-name').text(`Enjoy your ${weekDay}`)
 }
+//------------------ MAIN FUNCTIONS ------------------//
