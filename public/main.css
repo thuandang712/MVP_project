@@ -10,25 +10,21 @@
     color: #fff;
     background-color: #5995DA;  /* Blue */
     padding: 20px 0;
-    display: flex;
-    justify-content: center;
   }
   
   .menu {
-    /* border: 1px solid #fff;  For debugging */
+    /* border: 1px solid #fff; */
+    margin: auto;
     width: 900px;
-    display: flex;
-    justify-content: space-between;
-    font-family: 'STIX Two Text', serif;
-  }
-  
-  .login {
-    margin-left: 20px;
   }
 
-  .signup {
-    margin-left: auto;
+  .date{
+    font-family: 'STIX Two Text', serif;
+    font-size: 1.5em;
+    text-align: center;
+    /* color: black; */
 }
+  
 
 .header-container {
     background-color: #D6E9FE;
@@ -43,9 +39,11 @@
 
   .title-name {
     font-family: 'STIX Two Text', serif;
-    font-size: 4.5em;
-    color: black;
+    font-size: 4em;
+    color: rgb(66, 66, 66);
     text-align: center;
+    /* border: 1px solid black; */
+    margin-bottom: .2em;
 }
 
   .form {
@@ -77,11 +75,11 @@
 
   #add-task-btn:hover {
     background-color: rgb(248, 126, 147);
-  }
+}
 
 
 .task-container {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     padding: 20px 0;
   }
 
@@ -90,7 +88,7 @@
   }
 
   .task-list {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 50%;
     margin: auto;
     display: flex;
@@ -101,50 +99,56 @@
   }
   
   .tasks {
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    border-bottom: 1px solid black;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    margin-bottom: .5em;
+  }
+
+  .tasks:hover {
+    cursor: pointer;
+    /* border: 1px solid black; */
+    visibility: visible;
+    /* color: inherit; */
+    background-color: rgb(224, 224, 224);
   }
 
   .list-item {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     /* border-bottom: .5px solid black; */
     font-family: 'STIX Two Text', serif; 
     font-size: 1.5em;
-    padding: .2em 0;
+    padding: .2em .2em;
     margin: 0 .2em;
   }
 
   .remove-btn {
     cursor: pointer;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     margin-left: auto;
     font-family: 'STIX Two Text', serif; 
     font-size: 1.5em;
+    /* margin-right: 5em; */
   }
 
+  input[class=md-task]:checked~li.list-item {
+    text-decoration: line-through;
+    color: black;
+}
 
-  /* .footer {
-    display: flex;
-    justify-content: space-between;
-  }
+.footer {
+    margin: auto;
+    padding: 20px 0;
+  } 
   
   .footer-item {
-    border: 1px solid #fff;
+    /* border: 1px solid black; */
+    float: right;
     background-color: #D6E9FE;
-    height: 200px;
-    flex: 1;
+    font-family: 'STIX Two Text', serif; 
+    /* font-size: 1em; */
+    margin-right: 20em;
   }
-  .footer-three {
-    flex: 2;
-  }
-
-    .footer-one,
-    .footer-three {
-    background-color: #5995DA;
-    flex: initial;
-    width: 300px;
-    } */
-

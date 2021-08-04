@@ -3,17 +3,18 @@ const ulArea = $(".task-list")
 init()
 
 function init() {
-    getTaskItem()
+    getDate();
+    getTaskItem();
     addEventListenerToXBtn();
     addEventListenerToAddTaskBtn();
 }
 
-// function create and append result
+// create and append result
 function createAndAppendDivTask(taskId, taskName) {
     // create task Divs
     const taskDiv = $('<div></div>').addClass('tasks').attr('id', taskId)
     // create child elements
-    const input = $("<input type='checkbox' class='md-task'/>")    
+    const input = $(`<input type='checkbox' id=box-${taskId} class='md-task'/>`)    
     const li = $('<li></li>').addClass('list-item').text(taskName)
     const divBtn = $('<div></div>').addClass('remove-btn').text('x').attr('id', taskId)
     // append results
@@ -59,22 +60,38 @@ function addEventListenerToAddTaskBtn() {
         ////////////
 
         let lastTaskId = ulArea.children().last().attr('id')
-        // console.log(lastTaskId) 
         lastTaskId++;
-
         createAndAppendDivTask(lastTaskId, textInput)
     })
-
 }
 
 
-// add event listen to box
+// add event listen to check box to strike thru text --> handled by css
 // function addEventListenerToBox() {
-//     $("input[type='checkbox']").change( (e) => {
-//         console.log('working')
-//         // console.log(e)
-//         if(this.checked) {
-//             console.log('workingeeee')
+//     ulArea.on('click', (e) => {
+//         const isCheckBox = e.target.getAttribute('type') === 'checkbox'
+//         if (isCheckBox) {
+//             const boxId = e.target.getAttribute('id') 
+//             console.log(boxId)
+//             if ( $(`#${boxId}`).prop("checked")) {
+//                 console.log("Checkbox is checked.");
+//             } else  {
+//                 console.log("checkbox is NOT checked")
+//             }
 //         }
-//     });
+//     })
 // }
+
+
+// date manipulation
+function getDate() { 
+    const fullDate = new Date() 
+    const year = fullDate.getFullYear();
+    const month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][fullDate.getMonth()];
+    const date = fullDate.getDate();
+    const weekDay = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][fullDate.getDay()];
+    const formatted_date = `${month} ${date}, ${year}`
+    // show formatted date
+    $('.date').text(formatted_date)
+    $('.title-name').text(`Happy ${weekDay}`)
+}
