@@ -6,7 +6,6 @@ const path = require('path')
 const db = require('./db/db_configuration');
 const cors = require('cors')
 
-// const pr = process.env.NODE_ENV
 // port
 const PORT = process.env.PORT || 4000;
 
