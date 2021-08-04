@@ -68,20 +68,20 @@ function addEventListenerToAddTaskBtn() {
         const textInput = $('#task-name').val()
         // check if user input is nothing
         if (textInput.length === 0) {
-            // alert('Please enter....') ////////////////// needs fix
+            $('.error').show()
             $('.error').text('Oops!! Please enter item')
         } else {
             let lastTaskId = ulArea.children().last().attr('id')
             // handle case if there is nothing in the DB yet
             if (lastTaskId === undefined) {
                 lastTaskId = 1;
-                createAndAppendDivTask(lastTaskId, textInput)
                 $('.error').hide()
+                createAndAppendDivTask(lastTaskId, textInput)
                 postTaskItem('/api/task', {task_name: textInput})
             } else {
                 lastTaskId++;
-                createAndAppendDivTask(lastTaskId, textInput)
                 $('.error').hide()
+                createAndAppendDivTask(lastTaskId, textInput)
                 postTaskItem('/api/task', {task_name: textInput})
             }
         }
@@ -114,6 +114,6 @@ function getDate() {
     const formatted_date = `${month} ${date}, ${year}`
     // show formatted date
     $('.date').text(formatted_date)
-    $('.title-name').text(`Enjoy your ${weekDay}`)
+    $('.title-name').html(`Enjoy your ${weekDay} &#9749; &#128150;`)
 }
 //------------------ MAIN FUNCTIONS ------------------//
