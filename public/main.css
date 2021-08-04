@@ -109,9 +109,8 @@
   }
 
   .tasks:hover {
-    cursor: pointer;
+    /* cursor: pointer; */
     /* border: 1px solid black; */
-    visibility: visible;
     /* color: inherit; */
     background-color: rgb(224, 224, 224);
   }
@@ -125,6 +124,9 @@
     margin: 0 .2em;
   }
 
+  .md-task {
+    cursor: pointer;
+  }
   .remove-btn {
     cursor: pointer;
     /* border: 1px solid blue; */
