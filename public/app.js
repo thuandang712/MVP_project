@@ -52,7 +52,7 @@ function createAndAppendDivTask(taskId, taskName) {
     // create task Divs
     const taskDiv = $('<div></div>').addClass('tasks').attr('id', taskId)
     // create child elements
-    const input = $(`<input type='checkbox' id=box-${taskId} class='md-task'/>`)    
+    const input = $(`<input type='checkbox' id=box-${taskId} max-length="100" class='md-task'/>`)    
     const li = $('<li></li>').addClass('list-item').text(taskName)
     const divBtn = $('<div></div>').addClass('remove-btn').text('x').attr('id', taskId)
     // append results
@@ -114,6 +114,6 @@ function getDate() {
     const formatted_date = `${month} ${date}, ${year}`
     // show formatted date
     $('.date').text(formatted_date)
-    $('.title-name').html(`Enjoy your ${weekDay} &#9749; &#128150;`)
+    $('.title-name').html(`Enjoy your ${weekDay} &#9749;`)
 }
 //------------------ MAIN FUNCTIONS ------------------//

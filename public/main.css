@@ -4,32 +4,30 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'STIX Two Text', serif;
 }
 
 .menu-container {
-    color: #fff;
-    background-color: #5995DA;  /* Blue */
+    color: rgb(66, 66, 66);
+    background-color: #ccdbfd;  /* Blue */
     padding: 20px 0;
   }
   
   .menu {
-    /* border: 1px solid #fff; */
     margin: auto;
     width: 900px;
   }
 
-  .date{
-    font-family: 'STIX Two Text', serif;
-    font-size: 1.5em;
+  .date {
+    font-size: 1.7em;
     text-align: center;
-    /* color: black; */
+    /* color: rgb(136, 136, 136) */
 }
   
 
 .header-container {
-    background-color: #D6E9FE;
+    background-color: #f8edeb;
     padding: 20px 0;
-    /* border: 1px solid blue; */
   }
   
   .title-wrapper, .form {
@@ -38,16 +36,13 @@
   }
 
   .title-name {
-    font-family: 'STIX Two Text', serif;
     font-size: 4em;
     color: rgb(66, 66, 66);
     text-align: center;
-    /* border: 1px solid black; */
     margin-bottom: .2em;
 }
 
   .form {
-    /* border: 1px solid red; */
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -56,7 +51,8 @@
   #task-name, #add-task-btn {
     height: 40px;
     font-size: 1.5em;
-    border: 1.5px solid pink;
+    border: 1.5px solid #ffb3c1;
+    margin: .3em 0;
   }
 
   #task-name {
@@ -79,13 +75,11 @@
 
 
 .task-container {
-    /* border: 1px solid red; */
-    padding: 20px 0;
+    padding: 10px 0;
   }
 
   .error {
     color: red;
-    font-family: 'STIX Two Text', serif; 
     font-size: 1.5em;
     text-align: center;
   }
@@ -95,7 +89,6 @@
   }
 
   .task-list {
-    /* border: 1px solid black; */
     width: 40%;
     margin: auto;
     display: flex;
@@ -106,21 +99,17 @@
   }
   
   .tasks {
-    /* border: 1px solid red; */
     border-bottom: 1px solid black;
+    width: 100%;
     display: flex;
-    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     margin-bottom: .5em;
   }
 
-
-
   .list-item {
-    /* border: 1px solid black; */
-    /* border-bottom: .5px solid black; */
-    font-family: 'STIX Two Text', serif; 
+    width: 90%;
+    word-wrap: break-word;
     font-size: 1.5em;
     padding: .2em .2em;
     margin: 0 .2em;
@@ -131,19 +120,12 @@
   }
   .remove-btn {
     cursor: pointer;
-    /* border: 1px solid blue; */
     margin-left: auto;
-    font-family: 'STIX Two Text', serif; 
     font-size: 1.5em;
-    /* margin-right: 5em; */
-    /* opacity: .3; */
-    /* visibility: hidden; */
+    opacity: .5;
   }
 
   .tasks:hover {
-    /* cursor: pointer; */
-    /* border: 1px solid black; */
-    /* color: inherit; */
     background-color: rgb(224, 224, 224);
     visibility: visible;
   }
@@ -159,10 +141,6 @@
   } 
   
   .footer-item {
-    /* border: 1px solid black; */
     float: right;
-    /* background-color: #D6E9FE; */
-    font-family: 'STIX Two Text', serif; 
-    /* font-size: 1em; */
     margin-right: 20em;
   }
